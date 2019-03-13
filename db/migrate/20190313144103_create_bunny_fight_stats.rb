@@ -13,13 +13,8 @@ class CreateBunnyFightStats < ActiveRecord::Migration[5.2]
 
       t.references :bunny,
                    type: :uuid,
-                   index: { unique: true },
                    foreign_key: true
 
-      t.references :fight,
-                   type: :uuid,
-                   index: { unique: true },
-                   foreign_key: true
 
       t.timestamps
     end

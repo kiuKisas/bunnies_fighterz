@@ -1,46 +1,42 @@
 # frozen_string_literal: true
 
-class BunniesController < ApplicationController
+class FightsController < ApplicationController
+
   expose :bunnies, -> { Bunny.all }
-  expose :bunny
+  expose :fights, -> { Fight.all }
+  expose :fight
 
   def index; end
 
   def show; end
 
-  def new
-    bunny.build_bunny_stat
-  end
-
-  def edit; end
+  def new; end
 
   def create
-    if bunny.save
-      redirect_to bunny_path(bunny)
+    # refacto
+    # redo, array, check if two
+    fight = helpers.launch_fight(
+      Bunny.find(fight_params[:bunny_one_id]),
+      Bunny.find(fight_params[:bunny_two_id])
+    )
+    if fight&.save
+      redirect_to fight_path(fight)
     else
       render :new
     end
   end
 
-  def update
-    if bunny.update(bunny_params)
-      redirect_to bunnies_path
-    else
-      render :edit
-    end
-  end
-
   def destroy
-    bunny.destroy
-    redirect_to bunnies_path
+    fight.destroy
+    redirect_to fights_path
   end
 
   private
 
-  def bunny_params
-    params.require(:bunny).permit(
-      :name,
-      bunny_stat_attributes: %i[life attack defense stamina luck]
+  def fight_params
+    params.require(:fight).permit(
+      %i[bunny_one_id bunny_two_id]
     )
   end
+
 end

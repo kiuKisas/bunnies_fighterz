@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_144108) do
+ActiveRecord::Schema.define(version: 2019_03_13_152751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 2019_03_12_144108) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bunny_fight_stats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "victory"
+    t.integer "total_nbr_attack"
+    t.integer "succeed_attack"
+    t.integer "average_attack"
+    t.integer "total_domage"
+    t.integer "receive_domage"
+    t.uuid "bunny_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "fight_id"
+    t.index ["bunny_id"], name: "index_bunny_fight_stats_on_bunny_id"
+    t.index ["fight_id"], name: "index_bunny_fight_stats_on_fight_id"
+  end
+
   create_table "bunny_stats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "life"
     t.integer "attack"
@@ -32,8 +47,15 @@ ActiveRecord::Schema.define(version: 2019_03_12_144108) do
     t.uuid "bunny_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bunny_id"], name: "index_bunny_stats_on_bunny_id", unique: true
+    t.index ["bunny_id"], name: "index_bunny_stats_on_bunny_id"
   end
 
+  create_table "fights", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bunny_fight_stats", "bunnies"
+  add_foreign_key "bunny_fight_stats", "fights"
   add_foreign_key "bunny_stats", "bunnies"
 end

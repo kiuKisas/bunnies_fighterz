@@ -1,0 +1,5 @@
+h3 Create Fight
+= simple_form_for :fight, url: fights_path do |fight_form|
+  = fight_form.input_field :bunny_one_id, collection: bunnies, label_method: :name, value_method: :id, label: "Location", include_blank: false
+  = fight_form.input_field :bunny_two_id, collection: bunnies, label_method: :name, value_method: :id, label: "Location", include_blank: false
+  = fight_form.submit

@@ -8,7 +8,6 @@ class CreateBunnyStats < ActiveRecord::Migration[5.2]
       t.integer :luck
       t.references :bunny,
                    type: :uuid,
-                   index: { unique: true },
                    foreign_key: true
 
       t.timestamps
