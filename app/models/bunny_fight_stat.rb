@@ -1,0 +1,2 @@
+class BunnyFightStat < ApplicationRecord
+end
