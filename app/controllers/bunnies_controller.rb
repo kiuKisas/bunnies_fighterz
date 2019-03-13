@@ -10,7 +10,6 @@ class BunniesController < ApplicationController
 
   def new
     bunny.build_bunny_stat
-    byebug
   end
 
   def edit; end
@@ -32,7 +31,7 @@ class BunniesController < ApplicationController
   end
 
   def destroy
-    @bunny.destroy
+    bunny.destroy
     redirect_to bunnies_path
   end
 

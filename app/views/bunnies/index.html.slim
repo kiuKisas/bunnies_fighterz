@@ -1,5 +1,6 @@
 h1 = "Bunnies (#{bunnies.length})"
+= link_to "new", new_bunny_path
 ul
 - bunnies.each do |bunny|
   li
-    p = bunny.name
+    = link_to "#{bunny.name}", bunny_path(bunny)
