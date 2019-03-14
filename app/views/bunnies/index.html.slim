@@ -1,6 +1,6 @@
 h1 = "Bunnies (#{bunnies.length})"
-= link_to "new", new_bunny_path
 ul
 - bunnies.each do |bunny|
   li
     = link_to "#{bunny.name}", bunny_path(bunny)
+= link_to "new", new_bunny_path, class: "button rpgui-button"

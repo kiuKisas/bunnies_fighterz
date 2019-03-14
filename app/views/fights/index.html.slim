@@ -1,6 +1,6 @@
 h1 = "Fights (#{fights.length})"
-= link_to "new", new_fight_path
 ul
 - fights.each do |fight|
   li
     = link_to "#{fight.id}", fight_path(fight)
+= link_to "new", new_fight_path, class: "button rpgui-button"

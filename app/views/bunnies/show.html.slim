@@ -4,5 +4,5 @@ p = "attaque #{bunny.bunny_stat.attack}"
 p = "defense #{bunny.bunny_stat.defense}"
 p = "stamina #{bunny.bunny_stat.stamina}"
 p = "chance #{bunny.bunny_stat.luck}"
-= link_to "edit", edit_bunny_path(bunny)
-= link_to "delete", bunny_path(bunny), method: :delete
+= link_to "edit", edit_bunny_path(bunny), class: "button rpgui-button"
+= link_to "delete", bunny_path(bunny), method: :delete, class: "button rpgui-button"
