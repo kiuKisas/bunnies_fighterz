@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module BunniesFighterz
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.assets.paths << Rails.root.join('node_modules')
     config.load_defaults 5.2
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
