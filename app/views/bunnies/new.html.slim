@@ -1,11 +1,2 @@
 h3 Create Bunny
-= simple_form_for bunny, as: :bunny  do |bunny_form|
- = bunny_form.input :name
- = bunny_form.simple_fields_for :bunny_stat, bunny.bunny_stat do |stat_form|
-   = stat_form.input :life
-   = stat_form.input :attack
-   = stat_form.input :defense
-   = stat_form.input :stamina
-   = stat_form.input :luck
- = bunny_form.submit
-
+= render 'form'

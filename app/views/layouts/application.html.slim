@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title
+      | BunniesFighterz
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    div.rpgui-content
+      div.global-container
+        = render 'layouts/header'
+        div.rpgui-container.framed-golden
+          = yield
+        =render 'layouts/footer'
