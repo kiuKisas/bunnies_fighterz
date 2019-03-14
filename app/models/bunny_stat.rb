@@ -3,7 +3,7 @@
 class BunnyStat < ApplicationRecord
   belongs_to :bunny
 
-  MAX_PTS = 15
+  MAX_STOCK = 15
 
   LIFE = 355
   ATTACK = 200

@@ -1,31 +1,16 @@
 = simple_form_for bunny, as: :bunny  do |bunny_form|
  = bunny_form.input :name
+ h2#stat-manager-title Stat Manager
+ div.rpgui-icon.empty-slot
+  p#stock-view = stock
  = bunny_form.simple_fields_for :bunny_stat, bunny.bunny_stat do |stat_form|
-   = "#{@max_pts} left"
-   div.stat-wrapper
-     = stat_form.input :life, input_html: { value: bunny.bunny_stat.life || '0' }
-     = button_tag "+", class: "rpgui-button"
-     = button_tag "-", class: "rpgui-button"
-     div.rpgui-progress.blue
-   div.stat-wrapper
-     = stat_form.input :attack, input_html: { value: bunny.bunny_stat.life || '0' }
-     = button_tag "+", class: "rpgui-button"
-     = button_tag "-", class: "rpgui-button"
-     div.rpgui-progress.red
-   div.stat-wrapper
-     = stat_form.input :defense, input_html: { value: bunny.bunny_stat.defense || '0' }
-     = button_tag "+", class: "rpgui-button"
-     = button_tag "-", class: "rpgui-button"
-     div.rpgui-progress.green
-   div.stat-wrapper
-     = stat_form.input :stamina, input_html: { value: bunny.bunny_stat.life || '0' }
-     = button_tag "+", class: "rpgui-button"
-     = button_tag "-", class: "rpgui-button"
-     div.rpgui-progress
-   div.stat-wrapper
-     = stat_form.input :luck, input_html: { value: bunny.bunny_stat.life || '0' }
-     = button_tag "+", class: "rpgui-button"
-     = button_tag "-", class: "rpgui-button"
-     div.rpgui-progress
+   = render 'shared/edit_attr_stat', attr: 'life', color: 'blue', stat_form: stat_form, bunny: bunny
+   = render 'shared/edit_attr_stat', attr: 'attack', color: 'blue', stat_form: stat_form, bunny: bunny
+   = render 'shared/edit_attr_stat', attr: 'defense', color: 'blue', stat_form: stat_form, bunny: bunny
+   = render 'shared/edit_attr_stat', attr: 'stamina', color: 'blue', stat_form: stat_form, bunny: bunny
+   = render 'shared/edit_attr_stat', attr: 'luck', color: 'blue', stat_form: stat_form, bunny: bunny
 
  = bunny_form.button :button, class: 'rpgui-button', type: :submit
+= simple_form_for :stock do |stock_form|
+ = stock_form.hidden_field :max_stock, id: 'max-stock', disabled: true, value: stock || @max_stock
+ = stock_form.hidden_field :stock, id: :stock, disabled: true, hidden: true, value: stock

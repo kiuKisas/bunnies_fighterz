@@ -3,8 +3,8 @@
 class BunniesController < ApplicationController
   expose :bunnies, -> { Bunny.all }
   expose :bunny
-  before_action -> { @max_pts = BunnyStat::MAX_PTS }, only: %i[new edit]
-
+  before_action -> { @max_stock = BunnyStat::MAX_STOCK }, only: %i[new edit]
+  #before_action -> { @used_pts = }
   def index; end
 
   def show; end

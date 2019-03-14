@@ -10,8 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require ./statupdater.js
 //= require rpgui/rpgui.min.js
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
