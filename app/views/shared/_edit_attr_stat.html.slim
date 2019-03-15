@@ -1,6 +1,9 @@
 - id = "#{attr}-wrappeur"
+- attr_value = bunny.bunny_stat[attr] || 1
 div.stat-wrapper id=id
-  = stat_form.input attr.to_sym, input_html: { value: bunny.bunny_stat[attr]|| 0 }, readonly: true
+  = stat_form.input attr.to_sym, input_html: { value: attr_value }, readonly: true
   = button_tag '+', class: 'rpgui-button', type: :button, onclick: "addStat('#{id}', 'stock', 'stock-view')"
   = button_tag '-', class: 'rpgui-button', type: :button, onclick: "rmStat('#{id}', 'stock', 'max-stock', 'stock-view')"
   div.rpgui-progress class="#{color}"
+javascript:
+  initStat('#{id}', '#{attr_value}')

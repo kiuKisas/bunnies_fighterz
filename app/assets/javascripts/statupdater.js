@@ -1,3 +1,5 @@
+//= require waitforelem
+
 function statWrapper(statWrapperId) {
   wrapper = document.getElementById(statWrapperId)
   return {
@@ -5,6 +7,13 @@ function statWrapper(statWrapperId) {
     input : wrapper.getElementsByTagName('input')[0],
     progress : wrapper.getElementsByClassName('rpgui-progress')[0],
   }
+}
+
+function initStat(statWrapperId, statNbr) {
+	waitForElement('.rpgui-progress-fill').then(function(element) {
+		stat = statWrapper(statWrapperId)
+		RPGUI.set_value(stat.progress, (statNbr/10))
+	})
 }
 
 function updateStat(stat, statNbr) {
@@ -37,7 +46,7 @@ function rmStat(statWrapperId, stockInputId, maxStockInputId, stockViewId) {
   stockNbr = parseInt(stockInput.value)
   stat = statWrapper(statWrapperId)
 
-  if (stockNbr < maxStock && stat.input.value != "0") {
+  if (stockNbr < maxStock && stat.input.value != "1") {
     stockInput.value = ++stockNbr
     updateStockView(stockViewId, stockNbr)
     statNbr = parseInt(stat.input.value)
