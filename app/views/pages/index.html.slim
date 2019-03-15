@@ -1,0 +1,28 @@
+h1 Welcome to Bunnies Fighterz !
+
+br
+p "200 years ago, the fabulous land of rabbits was attacked by the fox gang. Terror, disease and especially famine followed, so much so that the king of rabbits, in charge of distributing food portions. He discovered with amazement that there were only 2 giant carrots left. He decided to keep one for himself, and to put the second one into play in a killing tournament that he would baptize under the sweet name of Bunnies Fighterz!"
+
+p Who will get the last carrot?
+br
+hr.golden
+br
+div.home-info
+  - if fight_ready
+    h3.left-align = "#{bunnies_length} bunnies are ready to fight !"
+  - elsif bunny_length == 1
+    h3.left-align = "One bunny is waiting for more fighters !"
+  - else
+    h3.left-align = "No bunny here, maybe you should send more invitations?"
+  = link_to "Bunnies list", bunnies_path, class: "button rpgui-button"
+  = link_to "Create bunny", new_bunny_path, class: "button rpgui-button"
+br
+div.home-info
+  - if fights_length.positive?
+    h3.left-align = "#{fights_length} fight(s) have already occurred"
+    = link_to "Fights list", fights_path, class: "button rpgui-button"
+  - else
+    h3.left-align = "No fight occured yet.."
+  - if fight_ready
+      = link_to "fight !", new_fight_path, class: "button rpgui-button"
+br
