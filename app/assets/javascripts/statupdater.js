@@ -46,12 +46,6 @@ function rmStat(statWrapperId, stockInputId, maxStockInputId, stockViewId) {
   stockNbr = parseInt(stockInput.value)
   stat = statWrapper(statWrapperId)
 
-  console.log('stockNbr')
-  console.log(stockNbr)
-  console.log('maxStock')
-  console.log(maxStock)
-  console.log('stat.input.value')
-  console.log(stat.input.value)
   if (stockNbr < maxStock && stat.input.value != "1") {
     stockInput.value = ++stockNbr
     updateStockView(stockViewId, stockNbr)
