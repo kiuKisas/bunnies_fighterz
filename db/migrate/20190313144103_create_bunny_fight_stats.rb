@@ -5,16 +5,14 @@ class CreateBunnyFightStats < ActiveRecord::Migration[5.2]
     create_table :bunny_fight_stats, id: :uuid do |t|
       t.boolean :victory
 
-      t.integer :total_nbr_attack
+      t.integer :life
+      t.integer :total_attack
       t.integer :succeed_attack
-      t.integer :average_attack
-      t.integer :total_domage
-      t.integer :receive_domage
+      t.integer :damage
 
       t.references :bunny,
                    type: :uuid,
                    foreign_key: true
-
 
       t.timestamps
     end

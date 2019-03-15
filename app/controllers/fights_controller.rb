@@ -16,7 +16,7 @@ class FightsController < ApplicationController
     # refacto
     # redo, array, check if two
     fight = helpers.launch_fight(
-      Bunny.find(fight_params[:bunny_one_id]),
+      Bunny.find(),
       Bunny.find(fight_params[:bunny_two_id])
     )
     if fight&.save
