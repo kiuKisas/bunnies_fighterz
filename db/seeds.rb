@@ -10,21 +10,21 @@ bunnies_list = [
   {
     name: 'poker',
     bunny_stat_attributes: {
-      life: 100,
-      attack: 100,
-      defense: 100,
-      stamina: 100,
-      luck: 100
+      life: 5,
+      attack: 5,
+      defense: 3,
+      stamina: 1,
+      luck: 1
     }
   },
   {
     name: 'anastasia',
     bunny_stat_attributes: {
-      life: 100,
-      attack: 100,
-      defense: 100,
-      stamina: 100,
-      luck: 100
+      life: 2,
+      attack: 2,
+      defense: 4,
+      stamina: 2,
+      luck: 5
     }
   }
 ]

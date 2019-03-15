@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class FightsController < ApplicationController
-
   expose :bunnies, -> { Bunny.all }
   expose :fights, -> { Fight.all }
   expose :fight
+  expose :bunny_fight_stats, -> { fight.bunny_fight_stats }
 
   def index; end
 
@@ -13,12 +13,11 @@ class FightsController < ApplicationController
   def new; end
 
   def create
-    # refacto
-    # redo, array, check if two
-    fight = helpers.launch_fight(
-      Bunny.find(),
-      Bunny.find(fight_params[:bunny_two_id])
+    fight = fight_launcher(
+      fight_params[:bunny_one_id],
+      fight_params[:bunny_two_id]
     )
+    byebug
     if fight&.save
       redirect_to fight_path(fight)
     else
@@ -39,4 +38,12 @@ class FightsController < ApplicationController
     )
   end
 
+  def fight_launcher(bunny_one_id, bunny_two_id)
+    bunny_one = Bunny.find(bunny_one_id)
+    bunny_two = Bunny.find(bunny_two_id)
+    return Fight.new unless bunny_one&.bunny_stat && bunny_two&.bunny_stat
+
+    fight_service = FightService.new(bunny_one, bunny_two)
+    fight_service.call
+  end
 end

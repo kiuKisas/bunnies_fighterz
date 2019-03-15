@@ -1,2 +1,18 @@
 h1 = "Fight #{fight.id}"
-= link_to "delete", fight_path(fight), method: :delete, class: "button rpgui-button"
+- bunny_fight_stats.each do |fight_stat|
+  div.fight-stat.rpgui-container.framed-grey
+    h2 = fight_stat.bunny.name
+    - if fight_stat.victory
+      p.win WIN
+    - else
+      p.lose LOSE
+    br
+    p Fight statistics
+    br
+    p = "life #{fight_stat.life}"
+    p = "total attack #{fight_stat.total_attack}"
+    p = "succeedattack #{fight_stat.succeed_attack}"
+    p = "damage #{fight_stat.damage}"
+br
+= link_to "Back", fights_path, class: "button rpgui-button"
+= link_to "Delete", fight_path(fight), method: :delete, class: "button rpgui-button"

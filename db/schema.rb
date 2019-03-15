@@ -25,11 +25,10 @@ ActiveRecord::Schema.define(version: 2019_03_13_152751) do
 
   create_table "bunny_fight_stats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "victory"
-    t.integer "total_nbr_attack"
+    t.integer "life"
+    t.integer "total_attack"
     t.integer "succeed_attack"
-    t.integer "average_attack"
-    t.integer "total_domage"
-    t.integer "receive_domage"
+    t.integer "damage"
     t.uuid "bunny_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

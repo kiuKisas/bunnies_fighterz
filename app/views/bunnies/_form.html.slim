@@ -12,5 +12,5 @@
 
  = bunny_form.button :button, class: 'rpgui-button', type: :submit
 = simple_form_for :stock do |stock_form|
- = stock_form.hidden_field :max_stock, id: 'max-stock', disabled: true, value: stock || @max_stock
+ = stock_form.hidden_field :max_stock, id: 'max-stock', disabled: true, value: max_stock
  = stock_form.hidden_field :stock, id: :stock, disabled: true, hidden: true, value: stock

@@ -3,4 +3,6 @@
   = fight_form.input_field :bunny_one_id, collection: bunnies, label_method: :name, value_method: :id, label: "Location", class: "rpgui-list", size: 5, include_blank: false
   h3 Bunny 2
   = fight_form.input_field :bunny_two_id, collection: bunnies, label_method: :name, value_method: :id, label: "Location", class: "rpgui-list", size: 5, include_blank: false
-  = fight_form.button :button, "Fight", class: 'rpgui-button', type: :submit
+  = fight_form.button :button, "Fight !", class: 'rpgui-button', type: :submit
+= link_to "Back", fights_path, class: "button rpgui-button"
+
