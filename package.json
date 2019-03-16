@@ -1,5 +1,7 @@
 {
   "name": "bunnies_fighterz",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "rpgui": "^1.0.3"
+  }
 }
