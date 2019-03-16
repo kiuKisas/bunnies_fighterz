@@ -10,6 +10,7 @@ module BunniesFighterz
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.assets.paths << Rails.root.join("multipurpose_bookshelf_slider")
+    config.assets.js_compressor = Uglifier.new(harmony: true)
     config.load_defaults 5.2
     config.browser_validations = true
     config.generators do |g|
