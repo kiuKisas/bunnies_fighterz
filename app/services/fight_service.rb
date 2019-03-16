@@ -31,14 +31,6 @@ class FightService
     }
   end
 
-  def calc_damage(attack, defense)
-    # divmod(1000) to get a value between 1 and 10
-    pts_defense = (attack * defense).divmod(1000).first
-    return 1 unless pts_defense < attack
-
-    attack - pts_defense
-  end
-
   def bunny_fight_stat(bunny, damage)
     BunnyFightStat.new(
       bunny: bunny,
@@ -50,6 +42,15 @@ class FightService
     )
   end
 
+  def calc_damage(attack, defense)
+    # divmod(1000) to get a value between 1 and 10
+    pts_defense = (attack * defense).divmod(1000).first
+    return 1 unless pts_defense < attack
+
+    attack - pts_defense
+  end
+
+
   def stamina_test(bunny_one, bunny_two)
     if bunny_two[:stat].stamina > bunny_one[:stat].stamina
       { fighter: bunny_two, target: bunny_one }
@@ -60,10 +61,6 @@ class FightService
 
   def luck_test(luck)
     luck <= rand(1..9)
-  end
-
-  def victory?(fight_stat)
-    fight_stat.life.positive?
   end
 
   def fight(fighter, target)
