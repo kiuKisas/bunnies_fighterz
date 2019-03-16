@@ -8,24 +8,66 @@
 
 bunnies_list = [
   {
-    name: 'poker',
+    name: 'Poker',
     bunny_stat_attributes: {
       life: 5,
       attack: 5,
-      defense: 3,
-      stamina: 1,
+      defense: 6,
+      stamina: 3,
       luck: 1
     }
   },
   {
-    name: 'anastasia',
+    name: 'Anastasia',
     bunny_stat_attributes: {
       life: 2,
+      attack: 3,
+      defense: 4,
+      stamina: 4,
+      luck: 7
+    }
+  },
+  {
+    name: 'Joachim',
+    bunny_stat_attributes: {
+      life: 5,
       attack: 2,
+      defense: 6,
+      stamina: 3,
+      luck: 4
+    }
+  },
+  {
+    name: 'Julietas',
+    bunny_stat_attributes: {
+      life: 2,
+      attack: 8,
       defense: 4,
       stamina: 2,
-      luck: 5
+      luck: 4
+    }
+  },
+  {
+    name: 'LLamateur',
+    bunny_stat_attributes: {
+      life: 1,
+      attack: 1,
+      defense: 2,
+      stamina: 8,
+      luck: 8
+    }
+  },
+  {
+    name: 'Batman',
+    bunny_stat_attributes: {
+      life: 8,
+      attack: 8,
+      defense: 2,
+      stamina: 1,
+      luck: 1
     }
   }
+
+
 ]
 Bunny.create(bunnies_list)

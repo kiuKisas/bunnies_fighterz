@@ -5,12 +5,21 @@ class BunnyStat < ApplicationRecord
 
   MAX_STOCK = 20
 
-  validate :validate_stock, on: %i[create update]
+  validates :life,
+            :attack,
+            :defense,
+            :stamina,
+            :luck,
+            numericality: { greater_than: 0, less_than: 10 }
+
+  validate :validate_stock, on: :create
 
   private
 
   def validate_stock
     stock = life + attack + defense + stamina + luck
-    stock == MAX_STOCK
+    return if stock == MAX_STOCK
+
+    errors.add(:stock, 'stock is not fully used')
   end
 end
