@@ -12,7 +12,6 @@ class FightService
     fighters = stamina_test(@bunny_one, @bunny_two)
     fight_stats = fight(fighters[:fighter], fighters[:target])
     fight_stats.each do |fighter|
-      victory?(fighter)
       fighter.life = 0 if fighter.life.negative?
     end
     Fight.new(bunny_fight_stats: fight_stats)
