@@ -3,11 +3,14 @@
 class BunnyStat < ApplicationRecord
   belongs_to :bunny
 
-  MAX_STOCK = 15
+  MAX_STOCK = 20
 
-  LIFE = 355
-  ATTACK = 200
-  DEFENSE = 200
-  STAMINA = 100
-  LUCK = 100
+  validate :validate_stock, on: %i[create update]
+
+  private
+
+  def validate_stock
+    stock = life + attack + defense + stamina + luck
+    stock == MAX_STOCK
+  end
 end
