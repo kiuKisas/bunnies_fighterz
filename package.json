@@ -6,6 +6,6 @@
   },
   "scripts": {
     "test": "echo 'no tests in js'",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "yarn"
   }
 }
