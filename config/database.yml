@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: bunnies_fighterz_production
-  username: bunnies_fighterz
-  password: <%= ENV['BUNNIES_FIGHTERZ_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  host: localhost
+  username: user
+  database: app-dev
