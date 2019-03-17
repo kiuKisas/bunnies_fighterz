@@ -3,5 +3,9 @@
   "private": true,
   "dependencies": {
     "rpgui": "^1.0.3"
+  },
+  "scripts": {
+    "test": "echo 'no tests in js'",
+    "heroku-postbuild": "yarn build"
   }
 }
