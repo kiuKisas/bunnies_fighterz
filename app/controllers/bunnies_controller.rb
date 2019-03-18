@@ -3,6 +3,7 @@
 class BunniesController < ApplicationController
   expose :bunnies, -> { Bunny.all }
   expose :bunny
+  expose :bunny_stat, -> { bunny.bunny_stat }
   expose :max_stock, -> { BunnyStat::MAX_STOCK }
 
   def index; end

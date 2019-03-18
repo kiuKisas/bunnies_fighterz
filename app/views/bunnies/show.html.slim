@@ -1,9 +1,32 @@
 h1 = bunny.name
-p = "life #{bunny.bunny_stat.life}"
-p = "attack #{bunny.bunny_stat.attack}"
-p = "defense #{bunny.bunny_stat.defense}"
-p = "stamina #{bunny.bunny_stat.stamina}"
-p = "luck #{bunny.bunny_stat.luck}"
+= simple_form_for :bunny_stat do |stat_form|
+  div.attr-stat-wrapper
+    = render 'shared/attr_stat',
+      attr: 'life',
+      color: StatColors::LIFE,
+      stat_form: stat_form,
+      attr_value: bunny_stat.life
+    = render 'shared/attr_stat',
+      attr: 'attack',
+      color: StatColors::ATTACK,
+      stat_form: stat_form,
+      attr_value: bunny_stat.attack
+    = render 'shared/attr_stat',
+      attr: 'defense',
+      color: StatColors::DEFENSE,
+      stat_form: stat_form,
+      attr_value: bunny_stat.defense
+    = render 'shared/attr_stat',
+      attr: 'stamina',
+      color: StatColors::STAMINA,
+      stat_form: stat_form,
+      attr_value: bunny_stat.stamina
+    = render 'shared/attr_stat',
+      attr: 'luck',
+      color: StatColors::LUCK,
+      stat_form: stat_form,
+      attr_value: bunny_stat.luck
+br
 = link_to "Back", bunnies_path, class: "button rpgui-button"
 = link_to "edit", edit_bunny_path(bunny), class: "button rpgui-button"
 = link_to "delete", bunny_path(bunny), method: :delete, class: "button rpgui-button"

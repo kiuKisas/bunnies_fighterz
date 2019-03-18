@@ -9,6 +9,7 @@ h1 = "Fight #{fight.id}"
     br
     p Fight statistics
     br
+      = render 'shared/attr_stat', attr: 'life', color: 'red', value: fight_stat.life
     p = "life #{fight_stat.life}"
     p = "life total #{fight_stat.life_total}"
     p = "total attack #{fight_stat.total_attack}"

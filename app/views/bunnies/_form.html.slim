@@ -5,11 +5,11 @@
   p#stock-view = stock
  = bunny_form.simple_fields_for :bunny_stat, bunny.bunny_stat do |stat_form|
    div.attr-stat-wrapper
-     = render 'shared/edit_attr_stat', attr: 'life', color: 'red', stat_form: stat_form, bunny: bunny
-     = render 'shared/edit_attr_stat', attr: 'attack', color: 'blue', stat_form: stat_form, bunny: bunny
-     = render 'shared/edit_attr_stat', attr: 'defense', color: 'green', stat_form: stat_form, bunny: bunny
-     = render 'shared/edit_attr_stat', attr: 'stamina', color: '', stat_form: stat_form, bunny: bunny
-     = render 'shared/edit_attr_stat', attr: 'luck', color: '', stat_form: stat_form, bunny: bunny
+     = render 'shared/edit_attr_stat', attr: 'life', color: StatColors::LIFE, stat_form: stat_form, bunny: bunny
+     = render 'shared/edit_attr_stat', attr: 'attack', color: StatColors::ATTACK, stat_form: stat_form, bunny: bunny
+     = render 'shared/edit_attr_stat', attr: 'defense', color: StatColors::DEFENSE, stat_form: stat_form, bunny: bunny
+     = render 'shared/edit_attr_stat', attr: 'stamina', color: StatColors::STAMINA, stat_form: stat_form, bunny: bunny
+     = render 'shared/edit_attr_stat', attr: 'luck', color: StatColors::LUCK, stat_form: stat_form, bunny: bunny
 
  = bunny_form.button :button, class: 'rpgui-button', type: :submit
 = simple_form_for :stock do |stock_form|
