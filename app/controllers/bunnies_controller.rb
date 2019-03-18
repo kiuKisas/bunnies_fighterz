@@ -33,6 +33,7 @@ class BunniesController < ApplicationController
   end
 
   def destroy
+    bunny.fights.each &:destroy
     bunny.destroy
     redirect_to bunnies_path
   end
