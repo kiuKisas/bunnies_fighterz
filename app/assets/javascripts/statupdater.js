@@ -10,7 +10,7 @@ function statWrapper(statWrapperId) {
   }
 }
 
-function initProgBarDOM(statWrapperId, statNbr) {
+function initProgBarDOM(statWrapperId, statNbr, statMax) {
 	waitForElement('.rpgui-progress-fill').then(function(element) {
 		stat = statWrapper(statWrapperId)
 		RPGUI.set_value(stat.progress, (statNbr/10))
