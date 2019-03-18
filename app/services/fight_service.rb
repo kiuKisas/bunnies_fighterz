@@ -31,14 +31,20 @@ class FightService
   end
 
   def bunny_fight_stat(bunny, damage)
+    life = calc_life(bunny.bunny_stat.life, BunnyFightStat::LIFE_MAX)
     BunnyFightStat.new(
       bunny: bunny,
       victory: false,
-      life: bunny.bunny_stat.life,
+      life: life,
+      life_total: life,
       total_attack: 0,
       succeed_attack: 0,
       damage: damage
     )
+  end
+
+  def calc_life(life_stat, life_max)
+    (life_stat * life_max).divmod(10).first
   end
 
   def calc_damage(attack, defense)
