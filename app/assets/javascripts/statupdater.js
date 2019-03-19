@@ -10,10 +10,15 @@ function statWrapper(statWrapperId) {
   }
 }
 
-function initProgBarDOM(statWrapperId, statNbr, statMax) {
+function initProgBarDOM(statWrapperId, statNbr, statMax = 10) {
+  console.log(statNbr)
+  console.log(statMax)
+  console.log((statNbr/statMax))
+  size = (statNbr/statMax)
 	waitForElement('.rpgui-progress-fill').then(function(element) {
 		stat = statWrapper(statWrapperId)
-		RPGUI.set_value(stat.progress, (statNbr/10))
+  console.log(stat.progress)
+		RPGUI.set_value(stat.progress, size)
 	})
 }
 
@@ -28,7 +33,6 @@ function addStat(statWrapperId, stockInputId, maxStockInputId) {
   stockNbr = parseInt(stockInput.value)
   stat = statWrapper(statWrapperId)
 
-  console.log(stockNbr)
   if (stockNbr > 0 && stat.input.value != '9') {
   stockInput.value = --stockNbr
   incStockView('stock-view', stockNbr)

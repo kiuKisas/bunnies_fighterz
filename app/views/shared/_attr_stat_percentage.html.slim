@@ -1,0 +1,7 @@
+- id = "#{attr}-wrappeur"
+div.stat-wrapper id=id
+  label = attr
+  div.rpgui-progress class="#{color}"
+  p =  "#{attr_value} / #{attr_value_max}"
+javascript:
+  initProgBarDOM('#{id}', '#{2}', '#{10}')
