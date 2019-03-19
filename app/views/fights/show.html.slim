@@ -1,4 +1,9 @@
-h1 = "Fight #{fight.id}"
+.box.space-between
+  = link_to "Back", fights_path, class: "button rpgui-button"
+  h1.margin-auto = "Fight #{fight.id}"
+  = link_to "Delete", fight_path(fight), method: :delete, class: "button rpgui-button"
+br
+br
 .fight-container.box.space-around
   - bunny_fight_stats.each do |fight_stat|
     // TODO: refacto
@@ -66,5 +71,3 @@ h1 = "Fight #{fight.id}"
         attr_value_max: 10
 
 br
-= link_to "Back", fights_path, class: "button rpgui-button"
-= link_to "Delete", fight_path(fight), method: :delete, class: "button rpgui-button"
