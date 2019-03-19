@@ -11,13 +11,9 @@ function statWrapper(statWrapperId) {
 }
 
 function initProgBarDOM(statWrapperId, statNbr, statMax = 10) {
-  console.log(statNbr)
-  console.log(statMax)
-  console.log((statNbr/statMax))
   size = (statNbr/statMax)
 	waitForElement('.rpgui-progress-fill').then(function(element) {
 		stat = statWrapper(statWrapperId)
-  console.log(stat.progress)
 		RPGUI.set_value(stat.progress, size)
 	})
 }
