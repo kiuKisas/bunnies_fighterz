@@ -11,23 +11,24 @@ function statWrapper(statWrapperId) {
 }
 
 function initProgBarDOM(statWrapperId, statNbr, statMax = 10) {
-  size = (statNbr/statMax)
 	waitForElement('.rpgui-progress-fill').then(function(element) {
-		stat = statWrapper(statWrapperId)
-		RPGUI.set_value(stat.progress, size)
+    const size = (statNbr/10)
+		const stat = statWrapper(statWrapperId)
+    RPGUI.set_value(stat.progress, size)
 	})
 }
 
 function updateProgBarDOM(stat, statNbr) {
   stat.input.value = statNbr
-  RPGUI.set_value(stat.progress, (statNbr/10))
+  RPGUI.set_value(stat.progress, (statNbr/statNbr))
 }
 
 function addStat(statWrapperId, stockInputId, maxStockInputId) {
+  // TODO: refacto
   const maxStock = parseInt(document.getElementById(maxStockInputId).value)
-  stockInput = document.getElementById(stockInputId)
+  const stockInput = document.getElementById(stockInputId)
+  const stat = statWrapper(statWrapperId)
   stockNbr = parseInt(stockInput.value)
-  stat = statWrapper(statWrapperId)
 
   if (stockNbr > 0 && stat.input.value != '9') {
   stockInput.value = --stockNbr
@@ -39,10 +40,11 @@ function addStat(statWrapperId, stockInputId, maxStockInputId) {
 }
 
 function rmStat(statWrapperId, stockInputId, maxStockInputId) {
+  // TODO: refacto
   const maxStock = parseInt(document.getElementById(maxStockInputId).value)
-  stockInput = document.getElementById(stockInputId)
+  const stockInput = document.getElementById(stockInputId)
+  const stat = statWrapper(statWrapperId)
   stockNbr = parseInt(stockInput.value)
-  stat = statWrapper(statWrapperId)
 
   if (stockNbr < maxStock && stat.input.value != "1") {
     stockInput.value = ++stockNbr
