@@ -18,9 +18,9 @@ function initProgBarDOM(statWrapperId, statNbr, statMax) {
 	})
 }
 
-function updateProgBarDOM(stat, statNbr) {
+function updateProgBarDOM(stat, statNbr, statMax = 10) {
   stat.input.value = statNbr
-  RPGUI.set_value(stat.progress, (statNbr/statNbr))
+  RPGUI.set_value(stat.progress, (statNbr/statMax))
 }
 
 function addStat(statWrapperId, stockInputId, maxStockInputId) {
