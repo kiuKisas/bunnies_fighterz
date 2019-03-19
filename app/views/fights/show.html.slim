@@ -1,19 +1,70 @@
 h1 = "Fight #{fight.id}"
-- bunny_fight_stats.each do |fight_stat|
-  div.fight-stat.rpgui-container.framed-grey
-    h2 = fight_stat.bunny.name
-    - if fight_stat.victory
-      p.win WIN
-    - else
-      p.lose LOSE
-    br
-    p Fight statistics
-    br
-    p = "life #{fight_stat.life}"
-    p = "life total #{fight_stat.life_total}"
-    p = "total attack #{fight_stat.total_attack}"
-    p = "succeed attack #{fight_stat.succeed_attack}"
-    p = "damage #{fight_stat.damage}"
+.fight-container.box.space-around
+  - bunny_fight_stats.each do |fight_stat|
+    // TODO: refacto
+    div.fight-stat.rpgui-container id=fight_stat.id class = "#{fight_stat.victory ? 'framed' : 'framed-grey'}"
+      h2 = fight_stat.bunny.name
+      - if fight_stat.victory
+        h3.win WIN
+      - else
+        h3.lose LOSE
+      br
+      p Fight statistics
+      br
+      = render 'shared/attr_stat_percentage',
+          attr: 'life',
+          container_id: fight_stat.id,
+          color: StatColors::LIFE,
+          attr_value: fight_stat.life,
+          attr_value_max: fight_stat.life_total
+      = render 'shared/attr_stat_percentage',
+          attr: 'damage',
+          container_id: fight_stat.id,
+          color: StatColors::ATTACK,
+          attr_value: fight_stat.damage,
+          attr_value_max: fight_stat.bunny.bunny_stat.attack
+      = render 'shared/attr_stat_percentage',
+          attr: 'succeed_attack',
+          container_id: fight_stat.id,
+          color: StatColors::LUCK,
+          attr_value: fight_stat.succeed_attack,
+          attr_value_max: fight_stat.total_attack
+      hr
+      p Bunny statistics
+      br
+      - bunny_stat = fight_stat.bunny.bunny_stat
+      = render 'shared/attr_stat_percentage',
+        attr: 'life',
+        container_id: bunny_stat.id,
+        color: StatColors::LIFE,
+        attr_value: bunny_stat.life,
+        attr_value_max: 10
+      = render 'shared/attr_stat_percentage',
+        attr: 'attack',
+        container_id: bunny_stat.id,
+        color: StatColors::ATTACK,
+        attr_value: bunny_stat.attack,
+        attr_value_max: 10
+      = render 'shared/attr_stat_percentage',
+        attr: 'defense',
+        container_id: bunny_stat.id,
+        color: StatColors::DEFENSE,
+        attr_value: bunny_stat.defense,
+        attr_value_max: 10
+      = render 'shared/attr_stat_percentage',
+        attr: 'stamina',
+        container_id: bunny_stat.id,
+        color: StatColors::STAMINA,
+        attr_value: bunny_stat.stamina,
+        attr_value_max: 10
+
+      = render 'shared/attr_stat_percentage',
+        attr: 'luck',
+        container_id: bunny_stat.id,
+        color: StatColors::LUCK,
+        attr_value: bunny_stat.luck,
+        attr_value_max: 10
+
 br
 = link_to "Back", fights_path, class: "button rpgui-button"
 = link_to "Delete", fight_path(fight), method: :delete, class: "button rpgui-button"

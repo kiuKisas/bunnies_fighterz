@@ -6,4 +6,4 @@ div.stat-wrapper id=id
   = button_tag '-', class: 'rpgui-button', type: :button, onclick: "rmStat('#{id}', 'stock', 'max-stock')"
   div.rpgui-progress class="#{color}"
 javascript:
-  initProgBarDOM('#{id}', '#{attr_value}')
+  initProgBarDOM('#{id}', #{attr_value}, 10)

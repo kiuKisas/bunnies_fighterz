@@ -1,7 +1,9 @@
-- id = "#{attr}-wrappeur"
+- id = "#{container_id}-#{attr}-wrappeur"
 div.stat-wrapper id=id
   label = attr
-  div.rpgui-progress class="#{color}"
-  p =  "#{attr_value} / #{attr_value_max}"
+  .percentage-progress-bar.box.space-between
+    div.rpgui-progress class="#{color}"
+    p =  "#{attr_value} / #{attr_value_max}"
+br
 javascript:
-  initProgBarDOM('#{id}', '#{2}', '#{10}')
+  initProgBarDOM('#{id}', #{attr_value}, #{attr_value_max})
