@@ -65,7 +65,7 @@ class FightService
   end
 
   def luck_test(luck)
-    luck <= rand(1..9)
+    luck >= rand(1..9)
   end
 
   def fight(fighter, target)
