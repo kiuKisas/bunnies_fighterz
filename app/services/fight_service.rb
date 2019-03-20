@@ -2,12 +2,12 @@
 
 class FightService
   def initialize(bunny_one, bunny_two)
-    @bunny_one = build_fighter(bunny_one, bunny_two) if bunny_one&.bunny_stat
-    @bunny_two = build_fighter(bunny_two, bunny_one) if bunny_two&.bunny_stat
+    @bunny_one = build_fighter(bunny_one, bunny_two)
+    @bunny_two = build_fighter(bunny_two, bunny_one)
   end
 
   def call
-    return Fight.new unless @bunny_one && @bunny_two
+    # return Fight.new unless @bunny_one && @bunny_two
 
     fighters = stamina_test(@bunny_one, @bunny_two)
     fight_stats = fight(fighters[:fighter], fighters[:target])

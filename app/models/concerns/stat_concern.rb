@@ -4,16 +4,13 @@ module StatConcern
   extend ActiveSupport::Concern
 
   included do
-    MAX_STOCK = 1
-    MAX_VALUE = 1
-
     validates :life,
               :attack,
               :defense,
               :stamina,
               :luck,
               numericality: {
-                greater_than: 0,
+                greater_than_or_equal_to: 0,
                 less_than_or_equal_to: MAX_VALUE
               }
 

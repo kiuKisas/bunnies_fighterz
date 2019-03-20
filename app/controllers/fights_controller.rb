@@ -42,7 +42,6 @@ class FightsController < ApplicationController
     bunny_one = Bunny.find(fight_params[:bunny_one_id])
     bunny_two = Bunny.find(fight_params[:bunny_two_id])
     return Fight.new unless bunny_one&.bunny_stat && bunny_two&.bunny_stat
-
     fight_service = FightService.new(bunny_one, bunny_two)
     fight_service.call
   end

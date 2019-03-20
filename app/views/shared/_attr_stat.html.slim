@@ -3,4 +3,4 @@ div.stat-wrapper id=id
   = stat_form.input attr.to_sym, input_html: { value: attr_value }, readonly: true
   div.rpgui-progress class="#{color}"
 javascript:
-    initProgBarDOM('#{id}', #{attr_value}, 10)
+  initProgBarDOM('#{id}', #{attr_value}, #{attr_value_max})

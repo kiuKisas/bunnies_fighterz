@@ -1,0 +1,34 @@
+.box.space-between
+  = link_to "Back", :back, class: "button rpgui-button"
+  h1.margin-auto = weapon.name
+  = link_to "edit", edit_weapon_path(weapon), class: "button rpgui-button"
+br
+br
+= simple_form_for :weapon_stat do |stat_form|
+  div.attr-stat-wrapper
+    = render 'shared/attr_stat',
+      attr: 'life',
+      color: StatColors::LIFE,
+      stat_form: stat_form,
+      attr_value: weapon_stat.life
+    = render 'shared/attr_stat',
+      attr: 'attack',
+      color: StatColors::ATTACK,
+      stat_form: stat_form,
+      attr_value: weapon_stat.attack
+    = render 'shared/attr_stat',
+      attr: 'defense',
+      color: StatColors::DEFENSE,
+      stat_form: stat_form,
+      attr_value: weapon_stat.defense
+    = render 'shared/attr_stat',
+      attr: 'stamina',
+      color: StatColors::STAMINA,
+      stat_form: stat_form,
+      attr_value: weapon_stat.stamina
+    = render 'shared/attr_stat',
+      attr: 'luck',
+      color: StatColors::LUCK,
+      stat_form: stat_form,
+      attr_value: weapon_stat.luck
+br

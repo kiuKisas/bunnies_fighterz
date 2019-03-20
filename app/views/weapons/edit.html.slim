@@ -1,0 +1,8 @@
+.box.space-between
+  = link_to "Back", :back, class: "button rpgui-button"
+  h1.margin-auto = "Edit Weapon"
+  = link_to "Delete", weapon_path(weapon), method: :delete, class: "button rpgui-button"
+br
+br
+
+= render 'form', stock: stock_max

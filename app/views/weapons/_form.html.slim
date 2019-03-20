@@ -1,0 +1,19 @@
+= simple_form_for weapon, as: :weapon, html: { autocomplete: 'off' }  do |weapon_form|
+ = weapon_form.input :name
+ h2#stat-manager-title Stat Manager
+ div.rpgui-icon.empty-slot
+  p#stock-view = stock
+ = weapon_form.simple_fields_for :weapon_stat, weapon.weapon_stat do |stat_form|
+   div.attr-stat-wrapper
+     = render 'shared/edit_attr_stat', attr: 'life', color: StatColors::LIFE, stat_form: stat_form, attr_value: weapon_stat['life'] || 0
+     = render 'shared/edit_attr_stat', attr: 'attack', color: StatColors::ATTACK, stat_form: stat_form, attr_value: weapon_stat['attack'] || 0
+     = render 'shared/edit_attr_stat', attr: 'defense', color: StatColors::DEFENSE, stat_form: stat_form, attr_value: weapon_stat['defense'] || 0
+     = render 'shared/edit_attr_stat', attr: 'stamina', color: StatColors::STAMINA, stat_form: stat_form, attr_value: weapon_stat['stamina'] || 0
+     = render 'shared/edit_attr_stat', attr: 'luck', color: StatColors::LUCK, stat_form: stat_form, attr_value: weapon_stat['luck'] || 0
+
+ = weapon_form.button :button, class: 'rpgui-button', type: :submit
+= simple_form_for :stock do |stock_form|
+ = stock_form.hidden_field :stock_max, id: 'max-stock', disabled: true, value: stock_max
+ = stock_form.hidden_field :stock, id: :stock, disabled: true, hidden: true, value: stock
+ javascript:
+   initStockView('stock-view', #{stock_max})

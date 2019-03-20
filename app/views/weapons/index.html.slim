@@ -1,0 +1,8 @@
+.box.space-between
+  = link_to "Add Weapon", new_weapon_path, class: "button rpgui-button"
+  h1.margin-auto = "Weapons (#{weapons.length})"
+
+ul
+- weapons.each do |weapon|
+  li
+    = link_to "#{weapon.name}", weapon_path(weapon)

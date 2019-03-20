@@ -4,7 +4,9 @@ class BunniesController < ApplicationController
   expose :bunnies, -> { Bunny.all }
   expose :bunny
   expose :bunny_stat, -> { bunny.bunny_stat }
-  expose :max_stock, -> { BunnyStat::MAX_STOCK }
+  expose :stock_max, -> { BunnyStat::MAX_STOCK }
+  expose :attr_value_max, -> { BunnyStat::MAX_VALUE }
+  expose :attr_value_min, -> { BunnyStat::MIN_VALUE }
 
   def index; end
 
@@ -33,7 +35,7 @@ class BunniesController < ApplicationController
   end
 
   def destroy
-    bunny.fights.each &:destroy
+    bunny.fights.each(&:destroy)
     bunny.destroy
     redirect_to bunnies_path
   end
@@ -46,5 +48,4 @@ class BunniesController < ApplicationController
       bunny_stat_attributes: %i[life attack defense stamina luck]
     )
   end
-
 end
