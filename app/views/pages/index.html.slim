@@ -7,22 +7,23 @@ p Who will get the last carrot?
 br
 hr.golden
 br
-div.home-info
-  - if fight_ready
-    h3.left-align = "#{bunnies_length} bunnies are ready to fight !"
-  - elsif bunnies_length == 1
-    h3.left-align = "One bunny is waiting for more fighters !"
-  - else
-    h3.left-align = "No bunny here, maybe you should send more invitations?"
-  = link_to "Bunnies list", bunnies_path, class: "button rpgui-button"
-  = link_to "Create bunny", new_bunny_path, class: "button rpgui-button"
-br
-div.home-info
-  - if fights_length.positive?
-    h3.left-align = "#{fights_length} fight(s) have already occurred"
-    = link_to "Fights list", fights_path, class: "button rpgui-button"
-  - else
-    h3.left-align = "No fight occured yet.."
-  - if fight_ready
-      = link_to "fight !", new_fight_path, class: "button rpgui-button"
-br
+.box.space-around
+  div.home-info
+    - if fight_ready
+      p.left-align = "#{bunnies_length} bunnies are ready to fight !"
+    - elsif bunnies_length == 1
+      p.left-align = "One bunny is waiting for more fighters !"
+    - else
+      p.left-align = "No bunny here, maybe you should send more invitations?"
+    = link_to "Bunnies list", bunnies_path, class: "button rpgui-button"
+    = link_to "Create bunny", new_bunny_path, class: "button rpgui-button"
+  br
+  div.home-info
+    - if fights_length.positive?
+      p.left-align = "#{fights_length} fight(s) have already occurred"
+      = link_to "Fights list", fights_path, class: "button rpgui-button"
+    - else
+      p.left-align = "No fight occured yet.."
+    - if fight_ready
+        = link_to "fight !", new_fight_path, class: "button rpgui-button"
+  br

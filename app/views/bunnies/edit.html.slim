@@ -1,3 +1,8 @@
-h3 Edit Bunny
+.box.space-between
+  = link_to "Back", :back, class: "button rpgui-button"
+  h1.margin-auto = "Edit Bunny"
+  = link_to "Delete", bunny_path(bunny), method: :delete, class: "button rpgui-button"
+br
+br
+
 = render 'form', stock: max_stock
-= link_to "Back", bunnies_path, class: "button rpgui-button"

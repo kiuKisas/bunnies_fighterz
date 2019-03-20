@@ -1,3 +1,7 @@
-h3 Create Bunny
+.box.space-between
+  = link_to "Back", :back, class: "button rpgui-button"
+  h1.margin-auto = 'Create Bunny'
+br
+br
 = render 'form', stock: max_stock
 = link_to "Back", bunnies_path, class: "button rpgui-button"

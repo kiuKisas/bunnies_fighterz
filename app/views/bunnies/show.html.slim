@@ -1,4 +1,9 @@
-h1 = bunny.name
+.box.space-between
+  = link_to "Back", :back, class: "button rpgui-button"
+  h1.margin-auto = bunny.name
+  = link_to "edit", edit_bunny_path(bunny), class: "button rpgui-button"
+br
+br
 = simple_form_for :bunny_stat do |stat_form|
   div.attr-stat-wrapper
     = render 'shared/attr_stat',
@@ -27,6 +32,3 @@ h1 = bunny.name
       stat_form: stat_form,
       attr_value: bunny_stat.luck
 br
-= link_to "Back", bunnies_path, class: "button rpgui-button"
-= link_to "edit", edit_bunny_path(bunny), class: "button rpgui-button"
-= link_to "delete", bunny_path(bunny), method: :delete, class: "button rpgui-button"

@@ -1,5 +1,5 @@
 .box.space-between
-  = link_to "Back", fights_path, class: "button rpgui-button"
+  = link_to "Back", :back, class: "button rpgui-button"
   h1.margin-auto = "Fight #{fight.id}"
   = link_to "Delete", fight_path(fight), method: :delete, class: "button rpgui-button"
 br

@@ -1,8 +1,10 @@
-h1 = "Bunnies (#{bunnies.length})"
+.box.space-between
+  = link_to "Add Bunny", new_bunny_path, class: "button rpgui-button"
+  h1.margin-auto = "Bunnies (#{bunnies.length})"
+  - if bunnies.length >= 2
+    = link_to "Fight !", new_fight_path, class: "button rpgui-button"
+
 ul
 - bunnies.each do |bunny|
   li
     = link_to "#{bunny.name}", bunny_path(bunny)
-= link_to "Create bunny", new_bunny_path, class: "button rpgui-button"
-- if bunnies.length >= 2
-  = link_to "Fight !", new_fight_path, class: "button rpgui-button"
