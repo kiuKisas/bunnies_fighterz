@@ -1,13 +1,13 @@
-class CreateBunnyStats < ActiveRecord::Migration[5.2]
+class CreateWeaponStats < ActiveRecord::Migration[5.2]
   def change
-    create_table :bunny_stats, id: :uuid do |t|
+    create_table :weapon_stats, id: :uuid do |t|
       t.integer :life
       t.integer :attack
       t.integer :defense
       t.integer :stamina
       t.integer :luck
 
-      t.references :bunny,
+      t.references :weapon,
                    type: :uuid,
                    foreign_key: true
 
