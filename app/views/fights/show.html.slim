@@ -69,5 +69,42 @@ br
         color: StatColors::LUCK,
         attr_value: bunny_stat.luck,
         attr_value_max: 10
+      - if fight_stat.weapons.length > 0
+        hr
+        p Weapon statistics
+        br
+        - weapon_stat = fight_stat.weapons[0].weapon_stat
+        = render 'shared/attr_stat_percentage',
+          attr: 'life',
+          container_id: weapon_stat.id,
+          color: StatColors::LIFE,
+          attr_value: weapon_stat.life,
+          attr_value_max: 2
+        = render 'shared/attr_stat_percentage',
+          attr: 'attack',
+          container_id: weapon_stat.id,
+          color: StatColors::ATTACK,
+          attr_value: weapon_stat.attack,
+          attr_value_max: 2
+        = render 'shared/attr_stat_percentage',
+          attr: 'defense',
+          container_id: weapon_stat.id,
+          color: StatColors::DEFENSE,
+          attr_value: weapon_stat.defense,
+          attr_value_max: 2
+        = render 'shared/attr_stat_percentage',
+          attr: 'stamina',
+          container_id: weapon_stat.id,
+          color: StatColors::STAMINA,
+          attr_value: weapon_stat.stamina,
+          attr_value_max: 2
 
+        = render 'shared/attr_stat_percentage',
+          attr: 'luck',
+          container_id: weapon_stat.id,
+          color: StatColors::LUCK,
+          attr_value: weapon_stat.luck,
+          attr_value_max: 2
+      - else
+        p = "#{fight_stat.bunny.name} doesn't used weapon for this fight"
 br

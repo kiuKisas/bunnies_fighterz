@@ -11,8 +11,8 @@ bunnies_list = [
     name: 'Poker',
     bunny_stat_attributes: {
       life: 5,
-      attack: 5,
-      defense: 6,
+      attack: 3,
+      defense: 3,
       stamina: 3,
       luck: 1
     }
@@ -20,31 +20,31 @@ bunnies_list = [
   {
     name: 'Anastasia',
     bunny_stat_attributes: {
-      life: 2,
-      attack: 3,
-      defense: 4,
-      stamina: 4,
+      life: 1,
+      attack: 2,
+      defense: 3,
+      stamina: 2,
       luck: 7
     }
   },
   {
     name: 'Joachim',
     bunny_stat_attributes: {
-      life: 5,
-      attack: 2,
-      defense: 6,
-      stamina: 3,
-      luck: 4
+      life: 4,
+      attack: 1,
+      defense: 5,
+      stamina: 2,
+      luck: 3
     }
   },
   {
     name: 'Julietas',
     bunny_stat_attributes: {
-      life: 2,
-      attack: 8,
-      defense: 4,
-      stamina: 2,
-      luck: 4
+      life: 1,
+      attack: 5,
+      defense: 3,
+      stamina: 1,
+      luck: 3
     }
   },
   {
@@ -53,16 +53,16 @@ bunnies_list = [
       life: 1,
       attack: 1,
       defense: 2,
-      stamina: 8,
-      luck: 8
+      stamina: 5,
+      luck: 6
     }
   },
   {
     name: 'Batman',
     bunny_stat_attributes: {
-      life: 8,
-      attack: 8,
-      defense: 2,
+      life: 6,
+      attack: 6,
+      defense: 1,
       stamina: 1,
       luck: 1
     }
@@ -80,6 +80,16 @@ weapons_list = [
       defense: 0,
       stamina: 0,
       luck: 2
+    }
+  },
+  {
+    name: 'Egide !',
+    weapon_stat_attributes: {
+      life: 1,
+      attack: 0,
+      defense: 2,
+      stamina: 0,
+      luck: 1
     }
   }
 ]

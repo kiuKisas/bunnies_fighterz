@@ -34,10 +34,16 @@ ActiveRecord::Schema.define(version: 2019_03_20_161245) do
     t.datetime "updated_at", null: false
     t.uuid "fight_id"
     t.integer "life_total"
-    t.uuid "weapon_id"
     t.index ["bunny_id"], name: "index_bunny_fight_stats_on_bunny_id"
     t.index ["fight_id"], name: "index_bunny_fight_stats_on_fight_id"
-    t.index ["weapon_id"], name: "index_bunny_fight_stats_on_weapon_id"
+  end
+
+  create_table "bunny_fight_stats_weapons", id: false, force: :cascade do |t|
+    t.uuid "bunny_fight_stat_id", null: false
+    t.uuid "weapon_id", null: false
+    t.index ["bunny_fight_stat_id", "weapon_id"], name: "fight_stats_weapons"
+    t.index ["bunny_fight_stat_id"], name: "index_bunny_fight_stats_weapons_on_bunny_fight_stat_id"
+    t.index ["weapon_id"], name: "index_bunny_fight_stats_weapons_on_weapon_id"
   end
 
   create_table "bunny_stats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -77,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_03_20_161245) do
 
   add_foreign_key "bunny_fight_stats", "bunnies"
   add_foreign_key "bunny_fight_stats", "fights"
-  add_foreign_key "bunny_fight_stats", "weapons"
   add_foreign_key "bunny_stats", "bunnies"
   add_foreign_key "weapon_stats", "weapons"
 end

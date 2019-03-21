@@ -1,7 +1,7 @@
 class BunnyFightStat < ApplicationRecord
   belongs_to :fight
   belongs_to :bunny
-  belongs_to :weapon, optional: true
+  has_and_belongs_to_many :weapons, optional: true
 
   LIFE_MAX = 100
 

@@ -20,6 +20,12 @@ class WeaponStat < ApplicationRecord
 
   validate :validate_stock, on: :create
 
+  def to_map
+    self
+      .attributes
+      .symbolize_keys
+      .delete_if { |k| [:updated_at, :created_at, :id, :weapon_id].include?(k) }
+  end
   private
 
   def validate_stock
@@ -28,4 +34,5 @@ class WeaponStat < ApplicationRecord
 
     errors.add(:stock, 'stock is not fully used')
   end
+
 end

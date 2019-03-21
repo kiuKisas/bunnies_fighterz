@@ -17,6 +17,13 @@ module StatConcern
     validate :validate_stock, on: :create
   end
 
+  def to_map
+    self
+      .attributes
+      .symbolize_keys
+      .delete_if { |k| [:updated_at, :created_at, :id].include?(k) }
+  end
+
   private
 
   def validate_stock

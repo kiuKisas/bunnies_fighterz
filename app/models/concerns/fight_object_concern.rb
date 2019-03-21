@@ -5,7 +5,6 @@ module FightObjectConcern
 
   included do
     has_many :bunny_fight_stats, dependent: :destroy
-    has_many :fights, through: :bunny_fight_stats
 
     validates :name,
               presence: true,

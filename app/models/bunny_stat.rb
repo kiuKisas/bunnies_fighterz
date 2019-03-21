@@ -3,8 +3,8 @@
 class BunnyStat < ApplicationRecord
   #include StatConcern
 
-  MAX_STOCK = 20
-  MAX_VALUE = 9
+  MAX_STOCK = 15
+  MAX_VALUE = 7
   MIN_VALUE = 1
 
   belongs_to :bunny
@@ -20,6 +20,12 @@ class BunnyStat < ApplicationRecord
 
   validate :validate_stock, on: :create
 
+  def to_map
+    self
+      .attributes
+      .symbolize_keys
+      .delete_if { |k| [:updated_at, :created_at, :id, :bunny_id].include?(k) }
+  end
   private
 
   def validate_stock
