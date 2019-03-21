@@ -5,31 +5,9 @@
   = link_to "Delete", weapon_path(weapon), method: :delete, class: "button rpgui-button"
 br
 br
-= simple_form_for :weapon_stat do |stat_form|
-  div.attr-stat-wrapper
-    = render 'shared/attr_stat',
-      attr: 'life',
-      color: StatColors::LIFE,
-      stat_form: stat_form,
-      attr_value: weapon_stat.life
-    = render 'shared/attr_stat',
-      attr: 'attack',
-      color: StatColors::ATTACK,
-      stat_form: stat_form,
-      attr_value: weapon_stat.attack
-    = render 'shared/attr_stat',
-      attr: 'defense',
-      color: StatColors::DEFENSE,
-      stat_form: stat_form,
-      attr_value: weapon_stat.defense
-    = render 'shared/attr_stat',
-      attr: 'stamina',
-      color: StatColors::STAMINA,
-      stat_form: stat_form,
-      attr_value: weapon_stat.stamina
-    = render 'shared/attr_stat',
-      attr: 'luck',
-      color: StatColors::LUCK,
-      stat_form: stat_form,
-      attr_value: weapon_stat.luck
+.attr-stat-wrapper
+  = render 'shared/stats_percentage',
+    container_id: nil,
+    stat_object: weapon_stat,
+    attr_value_max: 2
 br

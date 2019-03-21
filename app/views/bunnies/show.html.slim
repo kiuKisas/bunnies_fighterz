@@ -5,31 +5,9 @@
   = link_to "Delete", bunny_path(bunny), method: :delete, class: "button rpgui-button"
 br
 br
-= simple_form_for :bunny_stat do |stat_form|
-  div.attr-stat-wrapper
-    = render 'shared/attr_stat',
-      attr: 'life',
-      color: StatColors::LIFE,
-      stat_form: stat_form,
-      attr_value: bunny_stat.life
-    = render 'shared/attr_stat',
-      attr: 'attack',
-      color: StatColors::ATTACK,
-      stat_form: stat_form,
-      attr_value: bunny_stat.attack
-    = render 'shared/attr_stat',
-      attr: 'defense',
-      color: StatColors::DEFENSE,
-      stat_form: stat_form,
-      attr_value: bunny_stat.defense
-    = render 'shared/attr_stat',
-      attr: 'stamina',
-      color: StatColors::STAMINA,
-      stat_form: stat_form,
-      attr_value: bunny_stat.stamina
-    = render 'shared/attr_stat',
-      attr: 'luck',
-      color: StatColors::LUCK,
-      stat_form: stat_form,
-      attr_value: bunny_stat.luck
+.attr-stat-wrapper
+  = render 'shared/stats_percentage',
+    container_id: nil,
+    stat_object: bunny_stat,
+    attr_value_max: 10
 br
