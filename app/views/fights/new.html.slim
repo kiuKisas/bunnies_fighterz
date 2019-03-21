@@ -3,36 +3,11 @@
   h1.margin-auto = "Fight"
 br
 br
-= simple_form_for :fight, url: fights_path do |fight_form|
-  .box.space-around
-    .fighter-selection-wrapper.rpgui-container.framed
-      h3 Bunny 1
-      = fight_form.input_field :bunny_one_id,
-        collection: bunnies,
-        label_method: :name,
-        value_method: :id,
-        class: "rpgui-list",
-        size: 7,
-        include_blank: false
-      h3 Weapon
-      - if weapons.length.positive?
-        = fight_form.input_field :weapon_one_id,
-                                 collection: weapons,
-                                 label_method: :name,
-                                 value_method: :id,
-                                 class: 'rpgui-list',
-                                 size: 3
-      - else
-        p No weapon available
-    .fighter-selection-wrapper.rpgui-container.framed
-      h3 Bunny 2
-      = fight_form.input_field :bunny_two_id,
-        collection: bunnies,
-        label_method: :name,
-        value_method: :id,
-        class: "rpgui-list",
-        size: 5,
-        include_blank: false
-      = fight_form.input_field :weapon_two_id, collection: weapons, label_method: :name, value_method: :id, label: "Weapon"
-  = fight_form.button :button, "Fight !", class: 'rpgui-button', type: :submit
+- if bunnies.length >= 2
+  = render 'fight_form',
+           bunnies: bunnies,
+           weapons: weapons
+- else
+  h3 You need at least 2 bunnies to be able to fight
+  = link_to "Add Bunny", new_bunny_path, class: "button rpgui-button"
 
