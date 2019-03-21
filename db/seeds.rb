@@ -48,7 +48,7 @@ bunnies_list = [
     }
   },
   {
-    name: 'LLamateur',
+    name: 'Grumox',
     bunny_stat_attributes: {
       life: 1,
       attack: 1,
@@ -70,4 +70,19 @@ bunnies_list = [
 
 
 ]
+
+weapons_list = [
+  {
+    name: 'Excalibur !',
+    weapon_stat_attributes: {
+      life: 0,
+      attack: 2,
+      defense: 0,
+      stamina: 0,
+      luck: 2
+    }
+  }
+]
+
 Bunny.create(bunnies_list)
+Weapon.create(weapons_list)

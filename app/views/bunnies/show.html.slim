@@ -2,6 +2,7 @@
   = link_to "Back", :back, class: "button rpgui-button"
   h1.margin-auto = bunny.name
   = link_to "edit", edit_bunny_path(bunny), class: "button rpgui-button"
+  = link_to "Delete", bunny_path(bunny), method: :delete, class: "button rpgui-button"
 br
 br
 = simple_form_for :bunny_stat do |stat_form|

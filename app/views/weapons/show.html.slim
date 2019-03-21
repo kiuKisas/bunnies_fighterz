@@ -2,6 +2,7 @@
   = link_to "Back", :back, class: "button rpgui-button"
   h1.margin-auto = weapon.name
   = link_to "edit", edit_weapon_path(weapon), class: "button rpgui-button"
+  = link_to "Delete", weapon_path(weapon), method: :delete, class: "button rpgui-button"
 br
 br
 = simple_form_for :weapon_stat do |stat_form|

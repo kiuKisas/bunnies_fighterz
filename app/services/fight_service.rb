@@ -7,8 +7,6 @@ class FightService
   end
 
   def call
-    # return Fight.new unless @bunny_one && @bunny_two
-
     fighters = stamina_test(@bunny_one, @bunny_two)
     fight_stats = fight(fighters[:fighter], fighters[:target])
     fight_stats.each do |fighter|
@@ -48,11 +46,12 @@ class FightService
   end
 
   def calc_damage(attack, defense)
-    # divmod(1000) to get a value between 1 and 10
-    pts_defense = (attack * defense).divmod(1000).first
-    return 1 unless pts_defense < attack
-
-    attack - pts_defense
+    # change divmod(10) if max point > 10
+    defensive_result = (attack * defense).divmod(10)
+    defensive_point = defensive_result.first +
+                      (defensive_result.last > 5 ? 1 : 0)
+    damage = attack - defensive_point
+    damage.positive? ? damage : 1
   end
 
 
