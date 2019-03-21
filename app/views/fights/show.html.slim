@@ -6,7 +6,6 @@ br
 br
 .fight-container.box.space-around
   - bunny_fight_stats.each do |fight_stat|
-    // TODO: refacto
     div.fight-stat.rpgui-container id=fight_stat.id class = "#{fight_stat.victory ? 'framed' : 'framed-grey'}"
       h2 = fight_stat.bunny.name
       - if fight_stat.victory
@@ -16,24 +15,9 @@ br
       br
       p Fight statistics
       br
-      = render 'shared/attr_stat_percentage',
-          attr: 'life',
-          container_id: fight_stat.id,
-          color: StatColors::LIFE,
-          attr_value: fight_stat.life,
-          attr_value_max: fight_stat.life_total
-      = render 'shared/attr_stat_percentage',
-          attr: 'damage',
-          container_id: fight_stat.id,
-          color: StatColors::ATTACK,
-          attr_value: fight_stat.damage,
-          attr_value_max: fight_stat.bunny.bunny_stat.attack
-      = render 'shared/attr_stat_percentage',
-          attr: 'succeed_attack',
-          container_id: fight_stat.id,
-          color: StatColors::LUCK,
-          attr_value: fight_stat.succeed_attack,
-          attr_value_max: fight_stat.total_attack
+      = render 'shared/fight_stat_percentage',
+        container_id: fight_stat.id,
+        stat_object: fight_stat
       hr
       p Bunny statistics
       br
@@ -45,12 +29,13 @@ br
       - if fight_stat.weapons.length > 0
         hr
         p Weapon statistics
-        br
-        - weapon_stat = fight_stat.weapons[0].weapon_stat
-        = render 'shared/stats_percentage',
-          container_id: weapon_stat.id,
-          stat_object: weapon_stat,
-          attr_value_max: 2
+        - fight_stat.weapons.each do |weapon|
+          p = weapon.name
+          br
+          = render 'shared/stats_percentage',
+            container_id: weapon.weapon_stat.id,
+            stat_object: weapon.weapon_stat,
+            attr_value_max: 2
       - else
         p = "#{fight_stat.bunny.name} doesn't used weapon for this fight"
 br

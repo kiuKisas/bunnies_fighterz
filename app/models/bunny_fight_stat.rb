@@ -7,9 +7,10 @@ class BunnyFightStat < ApplicationRecord
 
   validates :life,
             :life_total,
-            :total_attack,
-            :succeed_attack,
+            :attack,
+            :attack_total,
             :damage,
+            :damage_total,
             numericality: { greater_than_or_equal_to: 0 }
 
   validate :victory?

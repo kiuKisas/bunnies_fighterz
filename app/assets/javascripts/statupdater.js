@@ -1,7 +1,6 @@
 //= require waitforelem
 //= require stockviewupdater
 
-// TODO: make it a class
 function statWrapper(statWrapperId) {
   wrapper = document.getElementById(statWrapperId)
   return {
@@ -9,14 +8,6 @@ function statWrapper(statWrapperId) {
     input : wrapper.getElementsByTagName('input')[0],
     progress : wrapper.getElementsByClassName('rpgui-progress')[0],
   }
-}
-
-function initProgBarDOM_bck(statWrapperId, statNbr, statMax) {
-	waitForElement('.rpgui-progress-fill').then(function(element) {
-    const size = (statNbr/statMax)
-		const stat = statWrapper(statWrapperId)
-    RPGUI.set_value(stat.progress, size)
-	})
 }
 
 let statMax;
@@ -39,8 +30,8 @@ function updateProgBarDOM(stat, statNbr, statMax = self.statMax) {
   RPGUI.set_value(stat.progress, (statNbr/statMax))
 }
 
+// TODO: refacto
 function addStat(statWrapperId, stockInputId) {
-  // TODO: refacto
   const stockInput = document.getElementById(stockInputId)
   const stat = statWrapper(statWrapperId)
   stockNbr = parseInt(stockInput.value)
@@ -55,7 +46,6 @@ function addStat(statWrapperId, stockInputId) {
 }
 
 function rmStat(statWrapperId, stockInputId) {
-  // TODO: refacto
   const stockInput = document.getElementById(stockInputId)
   const stat = statWrapper(statWrapperId)
   stockNbr = parseInt(stockInput.value)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_161245) do
+ActiveRecord::Schema.define(version: 2019_03_21_225222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,14 +26,15 @@ ActiveRecord::Schema.define(version: 2019_03_20_161245) do
   create_table "bunny_fight_stats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "victory"
     t.integer "life"
-    t.integer "total_attack"
-    t.integer "succeed_attack"
     t.integer "damage"
     t.uuid "bunny_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "fight_id"
     t.integer "life_total"
+    t.integer "damage_total"
+    t.integer "attack_total"
+    t.integer "attack"
     t.index ["bunny_id"], name: "index_bunny_fight_stats_on_bunny_id"
     t.index ["fight_id"], name: "index_bunny_fight_stats_on_fight_id"
   end

@@ -2,8 +2,8 @@
 
 class FightService
   def initialize(bunny_one, bunny_two, weapon_one, weapon_two)
-    stat_one = build_bunny_final_stat(bunny_one, weapon_one)
-    stat_two = build_bunny_final_stat(bunny_two, weapon_two)
+    stat_one = concat_stat(bunny_one, weapon_one)
+    stat_two = concat_stat(bunny_two, weapon_two)
     @bunny_one = build_fighter(bunny_one, weapon_one, stat_one, stat_two)
     @bunny_two = build_fighter(bunny_two, weapon_two, stat_two, stat_one)
   end
@@ -19,35 +19,43 @@ class FightService
 
   private
 
-  def build_bunny_final_stat(bunny, weapon)
-    return bunny.bunny_stat unless weapon
-    weapon_stat_map = weapon.weapon_stat.to_map
-    bunny_stat_map = bunny.bunny_stat.to_map
-    bunny_stat_map.merge(weapon_stat_map) do |_key, bunny_val, weapon_val|
-      bunny_val + weapon_val
+  def concat_stat(stat_one, stat_two)
+    return stat_one.bunny_stat unless stat_two
+
+    weapon_stat_map = stat_two.weapon_stat.to_map
+    bunny_stat_map = stat_one.bunny_stat.to_map
+    bunny_stat_map.merge(weapon_stat_map) do |_key, val_one, val_two|
+      val_one + val_two
     end
   end
 
   def build_fighter(bunny, weapon, stat_one, stat_two)
-    life = calc_life(stat_one[:life], BunnyFightStat::LIFE_MAX)
-    damage = calc_damage(stat_one[:attack], stat_two[:defense])
-
+    attrs = build_fight_stat_attrs(stat_one, stat_two)
     {
       stat: stat_one,
-      fight_stat: build_bunny_fight_stat(bunny, life, damage, weapon)
+      fight_stat: build_bunny_fight_stat(attrs, bunny, weapon)
     }
   end
 
-  def build_bunny_fight_stat(bunny, life, damage, weapon)
-    BunnyFightStat.new(
-      bunny: bunny,
-      weapons: weapon ? [weapon] : [],
+  def build_fight_stat_attrs(stat_one, stat_two)
+    life = calc_life(stat_one[:life], BunnyFightStat::LIFE_MAX)
+    {
       victory: false,
       life: life,
       life_total: life,
-      total_attack: 0,
-      succeed_attack: 0,
-      damage: damage
+      damage: calc_damage(stat_one[:attack], stat_two[:defense]),
+      damage_total: stat_one[:attack],
+      attack: 0,
+      attack_total: 0
+    }
+  end
+
+  def build_bunny_fight_stat(attrs, bunny, weapon)
+    BunnyFightStat.new(
+      attrs.merge(
+        bunny: bunny,
+        weapons: weapon ? [weapon] : []
+      )
     )
   end
 
@@ -63,7 +71,6 @@ class FightService
     damage = attack - defensive_point
     damage.positive? ? damage : 1
   end
-
 
   def stamina_test(bunny_one, bunny_two)
     if bunny_two[:stat][:stamina] > bunny_one[:stat][:stamina]
@@ -88,11 +95,11 @@ class FightService
   end
 
   def attack(fighter, target)
-    fighter[:fight_stat].total_attack += 1
+    fighter[:fight_stat].attack_total += 1
     return unless luck_test(fighter[:stat][:luck])
 
     damage = fighter[:fight_stat].damage
     target[:fight_stat][:life] -= damage
-    fighter[:fight_stat].succeed_attack += 1
+    fighter[:fight_stat].attack += 1
   end
 end

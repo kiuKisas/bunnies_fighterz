@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class WeaponStat < ApplicationRecord
+  include StatConcern
 
-  #include StatConcern
   MAX_STOCK = 4
   MAX_VALUE = 2
   MIN_VALUE = 0
@@ -20,12 +20,6 @@ class WeaponStat < ApplicationRecord
 
   validate :validate_stock, on: :create
 
-  def to_map
-    self
-      .attributes
-      .symbolize_keys
-      .delete_if { |k| [:updated_at, :created_at, :id, :weapon_id].include?(k) }
-  end
   private
 
   def validate_stock
