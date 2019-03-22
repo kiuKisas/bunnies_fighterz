@@ -1,12 +1,12 @@
 = simple_form_for :fight, url: fights_path do |fight_form|
   .box.space-around
-    = render 'bunny_fight_form',
-      id: 'one',
+    = render 'bunny_fight_stat_form',
+      name: 'one',
       fight_form: fight_form,
       bunnies: bunnies,
       weapons: weapons
-    = render 'bunny_fight_form',
-      id: 'two',
+    = render 'bunny_fight_stat_form',
+      name: 'two',
       fight_form: fight_form,
       bunnies: bunnies,
       weapons: weapons

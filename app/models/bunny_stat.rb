@@ -16,9 +16,11 @@ class BunnyStat < ApplicationRecord
             numericality: {
               greater_than_or_equal_to: self::MIN_VALUE,
               less_than_or_equal_to: self::MAX_VALUE
-            }
+            },
+            on: :create
 
   validate :validate_stock, on: :create
+  validates_associated :bunny
 
   private
 

@@ -5,18 +5,24 @@ class BunnyFightStat < ApplicationRecord
 
   LIFE_MAX = 100
 
+  validates_associated :bunny
+
   validates :life,
             :life_total,
             :attack,
             :attack_total,
             :damage,
             :damage_total,
-            numericality: { greater_than_or_equal_to: 0 }
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0 },
+            on: :create
 
-  validate :victory?
-  validates_associated :bunny
+  validate :victory?, on: :create
+
+  private
 
   def victory?
-    self.victory = true if life.positive?
+    self.victory = true if life&.positive?
   end
+
 end

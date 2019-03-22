@@ -19,6 +19,7 @@ class WeaponStat < ApplicationRecord
             }
 
   validate :validate_stock, on: :create
+  validates_associated :weapon
 
   private
 

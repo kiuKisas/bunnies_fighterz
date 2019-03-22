@@ -1,8 +1,7 @@
-- bunny_id = "bunny_#{id}_id"
-- weapon_id = "weapon_#{id}_id"
 .fighter-selection-wrapper.rpgui-container.framed
-  h3 = "Bunny #{id}"
-  = fight_form.input_field bunny_id,
+  h3 = "Bunny #{name}"
+  = fight_form.input_field :tags,
+                           name: 'fight[bunny_fight_stats_attributes[][bunny_id]]',
                            collection: bunnies,
                            label_method: :name,
                            value_method: :id,
@@ -11,7 +10,8 @@
                            include_blank: false
   h3 Weapon
   - if weapons.length.positive?
-    = fight_form.input_field weapon_id,
+    = fight_form.input_field :tags,
+                             name: 'fight[bunny_fight_stats_attributes[][weapon_id]]',
                              collection: weapons,
                              label_method: :name,
                              value_method: :id,
