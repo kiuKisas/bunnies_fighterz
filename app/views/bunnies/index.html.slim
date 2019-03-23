@@ -4,7 +4,31 @@
   - if bunnies.length >= 2
     = link_to "Fight !", new_fight_path, class: "button rpgui-button"
 
-ul
-- bunnies.each do |bunny|
-  li
-    = link_to "#{bunny.name}", bunny_path(bunny)
+- if bunnies.length.positive?
+  table
+    tr
+      th
+        p Name
+      th
+        p Life
+      th
+        p Attack
+      th
+        p Defense
+      th
+        p Stamina
+      th
+        p Luck
+    - bunnies.each do |bunny|
+      tr
+        td = link_to "#{bunny.name}", bunny_path(bunny)
+        td
+          p = bunny.bunny_stat.life
+        td
+          p = bunny.bunny_stat.attack
+        td
+          p = bunny.bunny_stat.defense
+        td
+          p = bunny.bunny_stat.stamina
+        td
+          p = bunny.bunny_stat.luck
