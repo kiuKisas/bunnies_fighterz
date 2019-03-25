@@ -1,5 +1,10 @@
+$brown: #854c30
+$brown-dark: #854c30 - #222
+$brown-light: $brown + #222
+$background: #222
+
 body
-  background: #222
+  background: $background
 
 .global-container
   width: 80%
@@ -96,3 +101,15 @@ h3.lose
 
 table
   width: 100%
+  border-collapse: collapse
+  text-align: center
+  tr
+    border-bottom: rgba(0, 0, 0, 0.05) 1px solid
+  tr.table-titles
+    background: $brown-light
+  td, th
+    padding-left: 10px
+
+.text-align-left
+  text-align: left
+
