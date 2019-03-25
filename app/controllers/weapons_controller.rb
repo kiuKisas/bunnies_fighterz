@@ -35,6 +35,7 @@ class WeaponsController < ApplicationController
   end
 
   def destroy
+    weapon.fights.each(&:destroy)
     weapon.destroy
     redirect_to weapons_path
   end

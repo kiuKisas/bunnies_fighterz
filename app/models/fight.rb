@@ -7,6 +7,7 @@ class Fight < ApplicationRecord
   validates_associated :bunny_fight_stats, :bunnies
   validate :validate_bunny_fight_stats
   accepts_nested_attributes_for :bunny_fight_stats
+
   private
 
   def validate_bunny_fight_stats
