@@ -2,7 +2,33 @@
   = link_to "Add Weapon", new_weapon_path, class: "button rpgui-button"
   h1.margin-auto = "Weapons (#{weapons.length})"
 
-ul
-- weapons.each do |weapon|
-  li
-    = link_to "#{weapon.name}", weapon_path(weapon)
+br
+- if weapons.length.positive?
+  table
+    tr.table-titles
+      th.text-align-left
+        p Name
+      th
+        p Life
+      th
+        p Attack
+      th
+        p Defense
+      th
+        p Stamina
+      th
+        p Luck
+    - weapons.each do |weapon|
+      tr
+        td.text-align-left
+          = link_to "#{weapon.name}", weapon_path(weapon)
+        td
+          p = weapon.weapon_stat.life
+        td
+          p = weapon.weapon_stat.attack
+        td
+          p = weapon.weapon_stat.defense
+        td
+          p = weapon.weapon_stat.stamina
+        td
+          p = weapon.weapon_stat.luck
