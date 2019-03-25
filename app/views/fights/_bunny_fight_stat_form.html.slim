@@ -11,7 +11,7 @@
   h3 Weapon
   - if weapons.length.positive?
     = fight_form.input_field :tags,
-                             name: 'fight[bunny_fight_stats_attributes[][weapon_id]]',
+                             name: 'fight[bunny_fight_stats_attributes[][weapon_ids]]',
                              collection: weapons,
                              label_method: :name,
                              value_method: :id,

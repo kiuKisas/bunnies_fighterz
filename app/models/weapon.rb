@@ -6,5 +6,4 @@ class Weapon < ApplicationRecord
   has_and_belongs_to_many :bunny_fight_stats, optional: true
 
   accepts_nested_attributes_for :weapon_stat
-  validates_associated :weapon_stat
 end
