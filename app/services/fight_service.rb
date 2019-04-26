@@ -1,39 +1,56 @@
 # frozen_string_literal: true
 
 class FightService
-  def initialize(bunny_one, bunny_two, weapon_one, weapon_two)
-    stat_one = concat_stat(bunny_one, weapon_one)
-    stat_two = concat_stat(bunny_two, weapon_two)
-    @bunny_one = build_fighter(bunny_one, weapon_one, stat_one, stat_two)
-    @bunny_two = build_fighter(bunny_two, weapon_two, stat_two, stat_one)
+  def initialize(fight)
+    @fight = fight
+    stats = build_stats
+    @bunny_one = build_fighter(@fight.bunny_fight_stats.first, stats[:one], stats[:two])
+    @bunny_two = build_fighter(@fight.bunny_fight_stats.last, stats[:two], stats[:one])
   end
 
   def call
     fighters = stamina_test(@bunny_one, @bunny_two)
     fight_stats = fight(fighters[:fighter], fighters[:target])
-    fight_stats.each do |fighter|
-      fighter[:life] = 0 if fighter[:life].negative?
+    fight_stats.each do |fight_stat|
+      fight_stat.victory?
+      fight_stat[:life] = 0 if fight_stat[:life].negative?
     end
-    Fight.new(bunny_fight_stats: fight_stats)
+    @fight
   end
 
   private
 
-  def concat_stat(stat_one, stat_two)
-    return stat_one.bunny_stat unless stat_two
+  def build_stats
+    bunny_fight_stat_first = @fight.bunny_fight_stats.first
+    bunny_fight_stat_last = @fight.bunny_fight_stats.last
+    {
+      one: concat_stat(
+        bunny_fight_stat_first.bunny,
+        bunny_fight_stat_first.weapons
+      ),
+      two: concat_stat(
+        bunny_fight_stat_last.bunny,
+        bunny_fight_stat_last.weapons
+      )
+    }
+  end
 
-    weapon_stat_map = stat_two.weapon_stat.to_map
+  def concat_stat(stat_one, stat_two)
+    return stat_one.bunny_stat unless stat_two.length.positive?
+
+    weapon_stat_map = stat_two.first.weapon_stat.to_map
     bunny_stat_map = stat_one.bunny_stat.to_map
     bunny_stat_map.merge(weapon_stat_map) do |_key, val_one, val_two|
       val_one + val_two
     end
   end
 
-  def build_fighter(bunny, weapon, stat_one, stat_two)
+  def build_fighter(bunny_fight_stat, stat_one, stat_two)
     attrs = build_fight_stat_attrs(stat_one, stat_two)
+    bunny_fight_stat.update(attrs)
     {
       stat: stat_one,
-      fight_stat: build_bunny_fight_stat(attrs, bunny, weapon)
+      fight_stat: bunny_fight_stat
     }
   end
 
@@ -48,15 +65,6 @@ class FightService
       attack: 0,
       attack_total: 0
     }
-  end
-
-  def build_bunny_fight_stat(attrs, bunny, weapon)
-    BunnyFightStat.new(
-      attrs.merge(
-        bunny: bunny,
-        weapons: weapon ? [weapon] : []
-      )
-    )
   end
 
   def calc_life(life_stat, life_max)

@@ -14,10 +14,8 @@ class FightsController < ApplicationController
   def new; end
 
   def create
-    if fight_params &&
-       fight_params[:bunny_one_id] &&
-       fight_params[:bunny_two_id] &&
-       (fight = fight_launcher).save
+    fight = fight_launcher
+    if fight.save
       redirect_to fight_path(fight)
     else
       render :new
@@ -32,21 +30,40 @@ class FightsController < ApplicationController
   private
 
   def fight_params
-    return nil unless params[:fight].present?
+    return [] unless params[:fight].present?
 
     params.require(:fight).permit(
-      %i[bunny_one_id weapon_one_id bunny_two_id weapon_two_id]
+      bunny_fight_stats_attributes: [%i[bunny_id weapon_ids]]
     )
   end
 
   def fight_launcher
-    bunny_one = Bunny.find_by_id(fight_params[:bunny_one_id])
-    bunny_two = Bunny.find_by_id(fight_params[:bunny_two_id])
-    weapon_one = Weapon.find_by_id(fight_params[:weapon_one_id])
-    weapon_two = Weapon.find_by_id(fight_params[:weapon_two_id])
-    return Fight.new unless bunny_one && bunny_two
+    return Fight.new unless params[:fight].present?
 
-    fight_service = FightService.new(bunny_one, bunny_two, weapon_one, weapon_two)
+    fight = Fight.new(fight_params)
+    return fight unless validate_fight
+
+    fight_service = FightService.new(fight)
     fight_service.call
+  end
+
+  def validate_fight
+    return false unless bunny_fight_stats.length == 2 &&
+                        validate_uniq_bunnies
+
+    bunny_fight_stats.each do |bunny_fight_stat|
+      bunny_fight_stat.context = :init
+      return false unless bunny_fight_stat.valid?
+
+      bunny_fight_stat.context = nil
+    end
+    true
+  end
+
+  def validate_uniq_bunnies
+    id_one = bunny_fight_stats.first.bunny.id
+    id_two = bunny_fight_stats.last.bunny.id
+
+    id_one != id_two
   end
 end
